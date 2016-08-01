@@ -38,9 +38,10 @@ To be able to follow along with the below examples, you will want to download so
 [:HowToOptimizeGemm/SetUp: Set Up] page.
 
 Make sure that the `makefile` starts with the following lines:
-     {{{
+```shell
 OLD  := MMult0
-NEW  := MMult0}}}
+NEW  := MMult0
+```
 This indicates that the performance of
 the version of matrix-matrix multiplication in 
 `MMult0.c` is measured (by virtue of the statement `OLD  :=0`).  
@@ -103,9 +104,9 @@ We will now lead the visitor through a series of optimizations.  In some cases, 
 
  * We first rewrite the basic implementation to hide the inner loop in a subroutine, `AddDot`:
 
-  * [:HowToOptimizeGemm/Optimization1/:Optimization 1]
+ * [:HowToOptimizeGemm/Optimization1/:Optimization 1]
 
-  * [:HowToOptimizeGemm/Optimization2/:Optimization 2]
+ * [:HowToOptimizeGemm/Optimization2/:Optimization 2]
 
 This does not yield better performance:
 
@@ -117,13 +118,13 @@ It does set us up for the next step.
 
  * We compute C four elements at a time in a subroutine, `AddDot1x4`, which performs four inner products at a time:
 
-  * [:HowToOptimizeGemm/Optimization_1x4_3/:Optimization (1x4) 3]
+ * [:HowToOptimizeGemm/Optimization_1x4_3/:Optimization (1x4) 3]
 
  * Now we inline the four separate inner products and fuse the loops into one, thereby computing the four inner products simultaneously in one loop:
 
-  * [:HowToOptimizeGemm/Optimization_1x4_4/:Optimization (1x4) 4]
+ * [:HowToOptimizeGemm/Optimization_1x4_4/:Optimization (1x4) 4]
 
-  * [:HowToOptimizeGemm/Optimization_1x4_5/:Optimization (1x4) 5]
+ * [:HowToOptimizeGemm/Optimization_1x4_5/:Optimization (1x4) 5]
 
 At this point, we are starting to see some performance improvements:
 
@@ -133,19 +134,19 @@ At this point, we are starting to see some performance improvements:
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
-  * [:HowToOptimizeGemm/Optimization_1x4_6/:Optimization (1x4) 6]
+ * [:HowToOptimizeGemm/Optimization_1x4_6/:Optimization (1x4) 6]
 
  * We use pointers to address elements in B
 
-  * [:HowToOptimizeGemm/Optimization_1x4_7/:Optimization (1x4) 7]
+ * [:HowToOptimizeGemm/Optimization_1x4_7/:Optimization (1x4) 7]
 
  * We unroll the loop by four  (a relatively arbitrary choice of unrolling factor)
 
-  * [:HowToOptimizeGemm/Optimization_1x4_8/:Optimization (1x4) 8]
+ * [:HowToOptimizeGemm/Optimization_1x4_8/:Optimization (1x4) 8]
 
  * We use indirect addressing to reduce the number of times the pointers need to be updated
 
-  * [:HowToOptimizeGemm/Optimization_1x4_9/:Optimization (1x4) 9]
+ * [:HowToOptimizeGemm/Optimization_1x4_9/:Optimization (1x4) 9]
 
 There is considerable improvement for problem sizes that fit (at least partially) in the L2 cache.  Still, there is a lot of room for improvement.
 
@@ -159,13 +160,13 @@ We now compute a 4 x 4 block of C at a time in order to use vector instructions 
 
  * We compute C four elements at a time in a subroutine, `AddDot4x4`, which performs sixteen inner products at a time:
 
-  * [:HowToOptimizeGemm/Optimization_4x4_3/:Optimization (4x4) 3]
+ * [:HowToOptimizeGemm/Optimization_4x4_3/:Optimization (4x4) 3]
 
  * Now we inline the sixteen separate inner products and fuse the loops into one, thereby computing the sixteen inner products simultaneously in one loop:
 
-  * [:HowToOptimizeGemm/Optimization_4x4_4/:Optimization (4x4) 4]
+ * [:HowToOptimizeGemm/Optimization_4x4_4/:Optimization (4x4) 4]
 
-  * [:HowToOptimizeGemm/Optimization_4x4_5/:Optimization (4x4) 5]
+ * [:HowToOptimizeGemm/Optimization_4x4_5/:Optimization (4x4) 5]
 
 At this point, we are again starting to see some performance improvements:
 
@@ -174,11 +175,11 @@ At this point, we are again starting to see some performance improvements:
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
-  * [:HowToOptimizeGemm/Optimization_4x4_6/:Optimization (4x4) 6]
+ * [:HowToOptimizeGemm/Optimization_4x4_6/:Optimization (4x4) 6]
 
  * We use pointers to address elements in B
 
-  * [:HowToOptimizeGemm/Optimization_4x4_7/:Optimization (4x4) 7]
+ * [:HowToOptimizeGemm/Optimization_4x4_7/:Optimization (4x4) 7]
 
 == Further optimizing ==
 
