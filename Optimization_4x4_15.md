@@ -14,6 +14,5 @@ This time the performance graph will look something like
 
 ![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-14_MMult-4x4-15.png)
 
-
 And, again, we add some code that makes it so that we avoid repacking the kx4 blocks of B.  Performance is now impressive!
-}}}
+
