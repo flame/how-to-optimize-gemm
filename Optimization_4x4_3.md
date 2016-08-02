@@ -13,7 +13,7 @@ octave:3> PlotAll        % this will create the plot
 This time the performance graph will look something like
 
 ![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult2_MMult-4x4-3.png)
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/ompare_MMult-1x4-3_MMult-4x4-3.png)
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-3_MMult-4x4-3.png)
 
 
 No performance benefit, yet.
