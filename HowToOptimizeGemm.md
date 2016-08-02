@@ -85,14 +85,13 @@ octave:1> PlotAll        % this will create the plot
 
 The performance graph (on my 1.7GHz Intel Core i5 MacBook Air) looks something like
 
-    [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult0.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult0.png,width=40%)]]
-
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_vs_MMult0.png) 
 
 Notice that the two curves are right on top of each other because data for the same implementation are being compared.  From the fact that the top of the graph represents peak performance, it is obvious that this simple implementation achieves only a fraction of the ideal performance.
 
 A question, of course is, is this the best we can do?  We are going to walk through a sequence of optimizations, culminating in performance marked by "NEW" in the following graph:
 
-    [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-15.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-15.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
 
 # Step-by-step optimizations
 
@@ -128,7 +127,7 @@ It does set us up for the next step.
 
 At this point, we are starting to see some performance improvements:
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-5.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-5.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-1x4-5.png) 
 
 ## Further optimizing
 
@@ -150,7 +149,7 @@ At this point, we are starting to see some performance improvements:
 
 There is considerable improvement for problem sizes that fit (at least partially) in the L2 cache.  Still, there is a lot of room for improvement.
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-9.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-9.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-1x4-9.png) 
 
 # Computing a 4 x 4 block of C at a time
 
@@ -170,8 +169,8 @@ We now compute a 4 x 4 block of C at a time in order to use vector instructions 
 
 At this point, we are again starting to see some performance improvements:
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-5.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-5.png,width=40%)]]
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-5_MMult-4x4-5.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-5_MMult-4x4-5.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-5.png) 
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-5_MMult-4x4-5.png) 
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
@@ -201,8 +200,8 @@ We now start optimizing differently as we did for the 1x4 case.
 
 We notice a considerable performance boost:
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-10.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-10.png,width=40%)]]
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-9_MMult-4x4-10.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-9_MMult-4x4-10.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-10.png) 
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-9_MMult-4x4-10.png) 
 
 Still, there is a lot of room for improvement.
 
@@ -214,8 +213,8 @@ Still, there is a lot of room for improvement.
 
 Now, performance is maintained:
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-11.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-11.png,width=40%)]]
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-10_MMult-4x4-11.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-10_MMult-4x4-11.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-11.png) 
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-10_MMult-4x4-11.png) 
 
 ## Packing into contiguous memory
 
@@ -227,9 +226,8 @@ Now, performance is maintained:
   
     This yields a surprisingly large performance boost: 
 
-
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-13.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-13.png,width=40%)]]
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-11_MMult-4x4-13.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-11_MMult-4x4-13.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-13.png) 
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-11_MMult-4x4-13.png)
 
  * Finally, we pack the block of B so that we march through it contiguously.
 
@@ -239,4 +237,6 @@ Now, performance is maintained:
   
 We now attain 90% of the turbo boost peak of the processor!
  
-  [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-15.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-15.png,width=40%)]][[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-13_MMult-4x4-15.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-13_MMult-4x4-15.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/ompare_MMult-4x4-13_MMult-4x4-15.png)
+
