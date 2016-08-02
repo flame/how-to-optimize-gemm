@@ -1,25 +1,22 @@
 Copy the contents of file `MMult_4x4_11.c` into a file named `MMult_4x4_12.c` and change the contents:
 
- || from || to ||
- ||<^> ~-[[Include(HowToOptimizeGemm/Details/MMult_4x4_11)]]-~ ||<^> ~-[[Include(HowToOptimizeGemm/Details/MMult_4x4_12)]]-~ ||
-
 Change the first lines in the `makefile` to
-    {{{
+```makefile
 OLD  := MMult_4x4_11
 NEW  := MMult_4x4_12
-}}}
+```
  * `make run`
-  {{{ 
+```matlab
 octave:3> PlotAll        % this will create the plot
-}}}
+```
 
 This time the performance graph will look something like
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-11_MMult-4x4-12.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-11_MMult-4x4-12.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-11_MMult-4x4-12.png)
 
 
 We now pack to 4xk block of A before calling `AddDot4x4`.  We see a performance drop.  If one examines the inner kernel
-{{{
+```c
 void InnerKernel( int m, int n, int k, double *a, int lda, 
                                        double *b, int ldb,
                                        double *c, int ldc )
@@ -37,7 +34,7 @@ void InnerKernel( int m, int n, int k, double *a, int lda,
     }
   }
 }
-}}}
+```
 
 one notices that each 4xk block of A is packed repeatedly, once for every time the outer loop is executed.
 
