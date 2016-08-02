@@ -238,5 +238,5 @@ Now, performance is maintained:
 We now attain 90% of the turbo boost peak of the processor!
  
 ![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/ompare_MMult-4x4-13_MMult-4x4-15.png)
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-13_MMult-4x4-15.png)
 
