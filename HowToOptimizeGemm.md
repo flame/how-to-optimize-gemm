@@ -17,24 +17,26 @@ If you use these materials for a class project, you MUST disclose where you foun
 
 This work is based on two publications.  You will want to read these when you are done with this exercise.  If you use information on this page in other research, please reference these papers.
 
- * Anatomy of high-performance matrix multiplication. [[BR]]
-   Kazushige Goto, Robert A. van de Geijn. [[BR]]
+ * Anatomy of high-performance matrix multiplication.
+   Kazushige Goto, Robert A. van de Geijn.
    ACM Transactions on Mathematical Software (TOMS), 2008.
 
      (Available without charge at the following site: http://www.cs.utexas.edu/users/flame/FLAMEPublications.html)
 
- * BLIS: A Modern Alternative to the BLAS. [[BR]]
-   Field G. Van Zee, Robert A. van de Geijn. [[BR]] 
+ * BLIS: A Modern Alternative to the BLAS.
+   Field G. Van Zee, Robert A. van de Geijn.
    ACM Transactions on Mathematical Software, submitted.
 
      (Available without charge at the following site: http://www.cs.utexas.edu/users/flame/FLAMEPublications.html)
 
 # Set Up
 
-This wiki page assumes that you have access to an Intel-based processor, the gnu-cc compiler, and [http://www.octave.gov octave] (an Open Source version of MATLAB that is part of a typical Linux or Unix install).
+This wiki page assumes that you have access to an Intel-based processor, the gnu-cc compiler, and [octave](https://www.gnu.org/software/octave/) (an Open Source version of MATLAB that is part of a typical Linux or Unix install).
 
 To be able to follow along with the below examples, you will want to download some routines, as described on the 
-[:HowToOptimizeGemm/SetUp: Set Up] page.
+[:HowToOptimizeGemm/SetUp: Set Up] 
+[Set Up](./SetUp)
+page.
 
 Make sure that the `makefile` starts with the following lines:
 ```shell
