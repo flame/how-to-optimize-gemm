@@ -1,4 +1,6 @@
-= The GotoBLAS/BLIS Approach to Optimizing Matrix-Matrix Multiplication - Step-by-Step =
+From http://wiki.cs.utexas.edu/rvdg/HowToOptimizeGemm
+
+# The GotoBLAS/BLIS Approach to Optimizing Matrix-Matrix Multiplication - Step-by-Step
 
 This page leads one, step by step, through the optimization of 
 matrix-matrix multiplication.  For now, it is assumed that the 
@@ -7,11 +9,11 @@ the gcc compiler as part of the exercise.
 
 Please send comments to rvdg@cs.utexas.edu.
 
-= NOTICE ON ACADEMIC HONESTY =
+# NOTICE ON ACADEMIC HONESTY
 
 If you use these materials for a class project, you MUST disclose where you found this information.  You will risk being accused of academic dishonesty otherwise...
 
-= References =
+# References
 
 This work is based on two publications.  You will want to read these when you are done with this exercise.  If you use information on this page in other research, please reference these papers.
 
@@ -27,7 +29,7 @@ This work is based on two publications.  You will want to read these when you ar
 
      (Available without charge at the following site: http://www.cs.utexas.edu/users/flame/FLAMEPublications.html)
 
-= Set Up =
+# Set Up
 
 This wiki page assumes that you have access to an Intel-based processor, the gnu-cc compiler, and [http://www.octave.gov octave] (an Open Source version of MATLAB that is part of a typical Linux or Unix install).
 
@@ -91,13 +93,13 @@ A question, of course is, is this the best we can do?  We are going to walk thro
 
     [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-15.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-15.png,width=40%)]]
 
-= Step-by-step optimizations =
+# Step-by-step optimizations
 
 We will now lead the visitor through a series of optimizations.  In some cases, a new implementation (optimization) merely is a small step in the right direction.  We change the code a little at a time in order to be able to make sure it remains correct.
 
-= Computing four elements of C at a time =
+# Computing four elements of C at a time
  
-== Hiding computation in a subroutine ==
+## Hiding computation in a subroutine
 
  * We first rewrite the basic implementation to hide the inner loop in a subroutine, `AddDot`:
 
@@ -111,7 +113,7 @@ This does not yield better performance:
 
 It does set us up for the next step.
 
-== Computing four elements at a time ==
+## Computing four elements at a time
 
  * We compute C four elements at a time in a subroutine, `AddDot1x4`, which performs four inner products at a time:
 
@@ -127,7 +129,7 @@ At this point, we are starting to see some performance improvements:
 
 [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-5.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-5.png,width=40%)]]
 
-== Further optimizing ==
+## Further optimizing
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
@@ -149,11 +151,11 @@ There is considerable improvement for problem sizes that fit (at least partially
 
 [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-9.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-1x4-9.png,width=40%)]]
 
-= Computing a 4 x 4 block of C at a time =
+# Computing a 4 x 4 block of C at a time
 
 We now compute a 4 x 4 block of C at a time in order to use vector instructions and vector registers effectively.  The idea is as follows:  There are special instructions as part of the SSE3 instruction set that allow one to perform two 'multiply accumulate' operations (two multiplies and two adds) per clock cycle for a total of four floating point operations per clock cycle.  To use these, one has to place data in 'vector registers'.  There are sixteen of these, each of which can hold two double precision numbers.  So, we can keep 32 double precision numbers in registers.  We will use sixteen of these to hold elements of C, a 4 x 4 block.
 
-== Repeating the same optimizations ==
+## Repeating the same optimizations
 
  * We compute C four elements at a time in a subroutine, `AddDot4x4`, which performs sixteen inner products at a time:
 
@@ -178,7 +180,7 @@ At this point, we are again starting to see some performance improvements:
 
  * [:HowToOptimizeGemm/Optimization_4x4_7/:Optimization (4x4) 7]
 
-== Further optimizing ==
+## Further optimizing
 
 We now start optimizing differently as we did for the 1x4 case.
 
@@ -203,7 +205,7 @@ We notice a considerable performance boost:
 
 Still, there is a lot of room for improvement.
 
-== Blocking to maintain performance ==
+## Blocking to maintain performance
 
  * In order to maintain the performance attained for smaller problem sizes, we block matrix C (and A and B correspondingly):
 
@@ -214,7 +216,7 @@ Now, performance is maintained:
 [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-11.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult-4x4-11.png,width=40%)]]
 [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-10_MMult-4x4-11.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-4x4-10_MMult-4x4-11.png,width=40%)]]
 
-== Packing into contiguous memory ==
+## Packing into contiguous memory
 
  * First, we pack the block of A so that we march through it contiguously.
 
