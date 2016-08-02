@@ -103,13 +103,13 @@ We will now lead the visitor through a series of optimizations.  In some cases, 
 
  * We first rewrite the basic implementation to hide the inner loop in a subroutine, `AddDot`:
 
- * [:HowToOptimizeGemm/Optimization1/:Optimization 1]
+ * [Optimization 1](./Optimization1)
 
- * [:HowToOptimizeGemm/Optimization2/:Optimization 2]
+ * [Optimization 2](./Optimization2)
 
 This does not yield better performance:
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult2.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult0_MMult2.png,width=40%)]]
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult2.png) 
 
 It does set us up for the next step.
 
