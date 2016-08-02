@@ -34,12 +34,11 @@ This work is based on two publications.  You will want to read these when you ar
 This wiki page assumes that you have access to an Intel-based processor, the gnu-cc compiler, and [octave](https://www.gnu.org/software/octave/) (an Open Source version of MATLAB that is part of a typical Linux or Unix install).
 
 To be able to follow along with the below examples, you will want to download some routines, as described on the 
-[:HowToOptimizeGemm/SetUp: Set Up] 
 [Set Up](./SetUp)
 page.
 
 Make sure that the `makefile` starts with the following lines:
-```shell
+```makefile
 OLD  := MMult0
 NEW  := MMult0
 ```
@@ -56,11 +55,11 @@ of the architecture.)
 Picking the right clock speed is a bit tricky, given that modern architectures have something called 'turbo boost' which changes the clock speed.  For example, the Intel i5 core in my laptop has a clock speed of 1.7 GHz, but a turbo boost rate of 2.6 GHz.  I chose to indicate in `proc_parameters.m` that the processor has a clock speed of 2.6 GHz, since otherwise some of the results would show that the implementation attains greater than the peak speed of the processor...
 
 Execute
- * `make run` [[BR]]
+ * `make run`
  This will compile, link, and execute the test driver, linking to the implementation in MMult0.c.  The performance data is saved in file `output0.m`.
- * `more output0.m` [[BR]]
+ * `more output0.m`
  This will display the contents of the output file `output_MMult0.m`.  It should look something like
-  {{{
+```matlab
 version = 'MMult0';
 MY_MMult = [
 40 1.163636e+00 0.000000e+00 
@@ -75,13 +74,13 @@ MY_MMult = [
 800 2.115609e-01 0.000000e+00 
 ];
 ];
-}}}
+```
  The first column equals the problem size.  The second column the performance (in Gflops) when a matrix-matrix multiply with the indicated problem size `m=n=k` is executed.  The last column reports the maximum absolute difference encountered between the implementation in `REF_MMult.c` and `MMult0.c`.  It should be close to 0.00000e+00 although as different optimizations are added the difference may not be perfectly zero.
- * `octave` [[BR]]
+ * `octave`
  This will start up octave.  Then, in octave, 
-  {{{
+```matlab
 octave:1> PlotAll        % this will create the plot
-}}}
+```
  I usually start up a separate xterm session, in which I keep octave running, so that every time I want to make a new graph, I can just execute 'PlotAll' in that session.
 
 The performance graph (on my 1.7GHz Intel Core i5 MacBook Air) looks something like
