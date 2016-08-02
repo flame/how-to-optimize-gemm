@@ -130,7 +130,6 @@ void AddDot1x4( int k, double *a, int lda,  double *b, int ldb, double *c, int l
   C( 0, 2 ) += c_02_reg; 
   C( 0, 3 ) += c_03_reg;
 }
-}}}
 ```
 
 
