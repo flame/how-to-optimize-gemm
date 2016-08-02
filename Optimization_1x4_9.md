@@ -12,7 +12,8 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-[[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-8_MMult-1x4-9.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-8_MMult-1x4-9.png,width=40%)]]
+
+![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-8_MMult-1x4-9.png)
 
 We now use something called 'indirect addressing'.   Notice, for example, the line 
 ```c
