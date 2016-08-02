@@ -1,6 +1,3 @@
-[[TableOfContents(2)]]
-
-
 = The GotoBLAS/BLIS Approach to Optimizing Matrix-Matrix Multiplication - Step-by-Step =
 
 This page leads one, step by step, through the optimization of 
