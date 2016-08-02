@@ -51,9 +51,6 @@ to
 ```c
 ```
 
- || from || to ||
- ||<^> ~-[[Include(HowToOptimizeGemm/Details/MMult1)]]-~ ||<^> ~-[[Include(HowToOptimizeGemm/Details/MMult2)]]-~ ||
-
 Change the first lines in the `makefile` to
 ```makefile
 OLD  := MMult1
