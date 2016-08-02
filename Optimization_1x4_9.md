@@ -1,26 +1,23 @@
-Copy the contents of file `MMult_1x4_8.c` into a file named `MMult_1x4_9.c` and change the contents:
-
- || from || to ||
- ||<^> ~-[[Include(HowToOptimizeGemm/Details/MMult_1x4_8)]]-~ ||<^> ~-[[Include(HowToOptimizeGemm/Details/MMult_1x4_9)]]-~ ||
+Copy the contents of file `MMult_1x4_8.c` into a file named `MMult_1x4_9.c` and change the contents.
 
 Change the first lines in the `makefile` to
-    {{{
+```makefile
 OLD  := MMult_1x4_8
 NEW  := MMult_1x4_9     
-}}}
+```
  * `make run`
-  {{{ 
+```matlab
 octave:3> PlotAll        % this will create the plot
-}}}
+```
 
 This time the performance graph will look something like
 
 [[ImageLink(http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-8_MMult-1x4-9.png,http://www.cs.utexas.edu/users/rvdg/HowToOptimizeGemm/Graphs/compare_MMult-1x4-8_MMult-1x4-9.png,width=40%)]]
 
 We now use something called 'indirect addressing'.   Notice, for example, the line 
-{{{
+```c
     c_00_reg += a_0p_reg * *(bp0_pntr+1);
-}}}
+```
 Here 
 
  *`a0p_reg` holds the element `A( 0, p+1 )`  (yes, this is a bit confusing.  A better name for the variable would be good...)
