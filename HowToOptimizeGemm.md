@@ -117,13 +117,13 @@ It does set us up for the next step.
 
  * We compute C four elements at a time in a subroutine, `AddDot1x4`, which performs four inner products at a time:
 
- * [:HowToOptimizeGemm/Optimization_1x4_3/:Optimization (1x4) 3]
+ * [Optimization (1x4) 3](./Optimization_1x4_3)
 
  * Now we inline the four separate inner products and fuse the loops into one, thereby computing the four inner products simultaneously in one loop:
 
- * [:HowToOptimizeGemm/Optimization_1x4_4/:Optimization (1x4) 4]
+ * [Optimization (1x4) 4](./Optimization_1x4_4)
 
- * [:HowToOptimizeGemm/Optimization_1x4_5/:Optimization (1x4) 5]
+ * [Optimization (1x4) 5](./Optimization_1x4_5)
 
 At this point, we are starting to see some performance improvements:
 
@@ -133,19 +133,19 @@ At this point, we are starting to see some performance improvements:
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
- * [:HowToOptimizeGemm/Optimization_1x4_6/:Optimization (1x4) 6]
+ * [Optimization (1x4) 6](./Optimization_1x4_6)
 
  * We use pointers to address elements in B
 
- * [:HowToOptimizeGemm/Optimization_1x4_7/:Optimization (1x4) 7]
+ * [Optimization (1x4) 7](./Optimization_1x4_7)
 
  * We unroll the loop by four  (a relatively arbitrary choice of unrolling factor)
 
- * [:HowToOptimizeGemm/Optimization_1x4_8/:Optimization (1x4) 8]
+ * [Optimization (1x4) 8](./Optimization_1x4_8)
 
  * We use indirect addressing to reduce the number of times the pointers need to be updated
 
- * [:HowToOptimizeGemm/Optimization_1x4_9/:Optimization (1x4) 9]
+ * [Optimization (1x4) 9](./Optimization_1x4_9)
 
 There is considerable improvement for problem sizes that fit (at least partially) in the L2 cache.  Still, there is a lot of room for improvement.
 
@@ -159,13 +159,13 @@ We now compute a 4 x 4 block of C at a time in order to use vector instructions 
 
  * We compute C four elements at a time in a subroutine, `AddDot4x4`, which performs sixteen inner products at a time:
 
- * [:HowToOptimizeGemm/Optimization_4x4_3/:Optimization (4x4) 3]
+ * [Optimization (4x4) 3](./Optimization_4x4_3)
 
  * Now we inline the sixteen separate inner products and fuse the loops into one, thereby computing the sixteen inner products simultaneously in one loop:
 
- * [:HowToOptimizeGemm/Optimization_4x4_4/:Optimization (4x4) 4]
+ * [Optimization (4x4) 4](./Optimization_4x4_4)
 
- * [:HowToOptimizeGemm/Optimization_4x4_5/:Optimization (4x4) 5]
+ * [Optimization (4x4) 5](./Optimization_4x4_5)
 
 At this point, we are again starting to see some performance improvements:
 
@@ -174,11 +174,11 @@ At this point, we are again starting to see some performance improvements:
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
- * [:HowToOptimizeGemm/Optimization_4x4_6/:Optimization (4x4) 6]
+ * [Optimization (4x4) 6](./Optimization_4x4_6)
 
  * We use pointers to address elements in B
 
- * [:HowToOptimizeGemm/Optimization_4x4_7/:Optimization (4x4) 7]
+ * [Optimization (4x4) 7](./Optimization_4x4_7)
 
 ## Further optimizing
 
@@ -186,17 +186,17 @@ We now start optimizing differently as we did for the 1x4 case.
 
  * We store a row of k x 4 matrix B in registers
 
-  * [:HowToOptimizeGemm/Optimization_4x4_8/:Optimization (4x4) 8]
+  * [Optimization (4x4) 8](./Optimization_4x4_8)
 
    Notice that we now use MANY more regular registers than physically available... 
 
  * We rearrange the computation so that two rows of 4x4 block of C are computed at a time.
 
-  * [:HowToOptimizeGemm/Optimization_4x4_9/:Optimization (4x4) 9]
+  * * [Optimization (4x4) 9](./Optimization_4x4_9)
 
  * We use vector registers and vector operations.
 
-  * [:HowToOptimizeGemm/Optimization_4x4_10/:Optimization (4x4) 10]
+  * [Optimization (4x4) 10](./Optimization_4x4_10)
 
 We notice a considerable performance boost:
 
@@ -209,7 +209,7 @@ Still, there is a lot of room for improvement.
 
  * In order to maintain the performance attained for smaller problem sizes, we block matrix C (and A and B correspondingly):
 
-  * [:HowToOptimizeGemm/Optimization_4x4_11/:Optimization (4x4) 11]
+  * [Optimization (4x4) 11](./Optimization_4x4_11)
 
 Now, performance is maintained:
 
@@ -220,9 +220,9 @@ Now, performance is maintained:
 
  * First, we pack the block of A so that we march through it contiguously.
 
-  * [:HowToOptimizeGemm/Optimization_4x4_12/:Optimization (4x4) 12]
+  * [Optimization (4x4) 12](./Optimization_4x4_12)
 
-  * [:HowToOptimizeGemm/Optimization_4x4_13/:Optimization (4x4) 13]
+  * [Optimization (4x4) 13](./Optimization_4x4_13)
   
     This yields a surprisingly large performance boost: 
 
@@ -231,9 +231,9 @@ Now, performance is maintained:
 
  * Finally, we pack the block of B so that we march through it contiguously.
 
-  * [:HowToOptimizeGemm/Optimization_4x4_14/:Optimization (4x4) 14]
+  * [Optimization (4x4) 14](./Optimization_4x4_14)
 
-  * [:HowToOptimizeGemm/Optimization_4x4_15/:Optimization (4x4) 15]
+  * [Optimization (4x4) 15](./Optimization_4x4_15)
   
 We now attain 90% of the turbo boost peak of the processor!
  
