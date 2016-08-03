@@ -1,4 +1,4 @@
-Copy the contents of file `MMult1.c` into a file named `MMult2.c` and change the contents:
+Copy the contents of file [`MMult1.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult1.c) into a file named [`MMult2.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult2.c) and change the contents:
 
 from
 ```c
@@ -113,7 +113,7 @@ void AddDot( int k, double *x, int incx,  double *y, double *gamma )
 Change the first lines in the `makefile` to
 ```makefile
 OLD  := MMult1
-NEW  := MMult2}}}
+NEW  := MMult2
 ```
 
  * `make run`
