@@ -1,4 +1,4 @@
-Copy the contents of file `MMult2.c` into a file named `MMult_1x4_3.c` and change the contents:
+Copy the contents of file [`MMult2.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult2.c) into a file named [`MMult_1x4_3.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_3.c) and change the contents:
 
 from
 ```c
