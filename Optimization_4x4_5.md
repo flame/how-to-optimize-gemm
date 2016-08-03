@@ -1,7 +1,7 @@
-Copy the contents of file `MMult_4x4_4.c` into a file named `MMult_4x4_5.c` and change the contents:
+Copy the contents of file [`MMult_4x4_4.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_4x4_4.c) into a file named [`MMult_4x4_5.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_4x4_5.c) and change the contents:
 
 
-Change the first lines in the `makefile` to
+ * Change the first lines in the `makefile` to
 ```makefile
 OLD  := MMult_4x4_4
 NEW  := MMult_4x4_5
