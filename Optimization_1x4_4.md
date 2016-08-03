@@ -1,4 +1,4 @@
-Copy the contents of file `MMult_1x4_3.c` into a file named `MMult_1x4_4.c` and change the contents:
+Copy the contents of file [`MMult_1x4_3.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_3.c) into a file named [`MMult_1x4_4.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_4.c) and change the contents:
 
 from
 ```c
@@ -136,15 +136,15 @@ void AddDot1x4( int k, double *a, int lda,  double *b, int ldb, double *c, int l
 }
 ```
 
-Change the first lines in the `makefile` to
-    {{{
+ * Change the first lines in the `makefile` to
+```makefile
 OLD  := MMult_1x4_3
 NEW  := MMult_1x4_4     
-}}}
+```
  * `make run`
-  {{{ 
+```matlab
 octave:3> PlotAll        % this will create the plot
-}}}
+```
 
 This time the performance graph will look something like
 
