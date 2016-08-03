@@ -23,7 +23,7 @@ Here
 
  *`a0p_reg` holds the element `A( 0, p+1 )`  (yes, this is a bit confusing.  A better name for the variable would be good...)
 
- * We want to `bp0_pntr' points to element `B( p, 0 )`.  Hence `bp0_pntr+1' addresses the element `B( p+1, 0 )`.  There is a special machine instruction to then access the element at `bp0_pntr+1' that does not require the pointer to be updated.
+ * We want to `bp0_pntr` points to element `B( p, 0 )`.  Hence `bp0_pntr+1` addresses the element `B( p+1, 0 )`.  There is a special machine instruction to then access the element at `bp0_pntr+1` that does not require the pointer to be updated.
 
  * As a result, the pointers that address the elements in the columns of B only need to be updated once every fourth iteration of the loop.
 
