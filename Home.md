@@ -1,6 +1,7 @@
 From http://wiki.cs.utexas.edu/rvdg/HowToOptimizeGemm
 
 Copyright by Prof. Robert van de Geijn (rvdg@cs.utexas.edu).
+
 Porting to Github Markdown Wiki by Jianyu Huang (jianyu@cs.utexas.edu).
 
 # The GotoBLAS/BLIS Approach to Optimizing Matrix-Matrix Multiplication - Step-by-Step
