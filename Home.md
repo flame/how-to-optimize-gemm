@@ -32,9 +32,10 @@ This work is based on two publications.  You will want to read these when you ar
 
      (Available without charge at the following site: http://www.cs.utexas.edu/users/flame/FLAMEPublications.html)
 
-For more advanced exercises with recent architectures (Intel Sandy/Ivy Bridges, Haswell, etc), you may want to try BLISlab.
+For more advanced exercises with recent architectures (Intel Sandy/Ivy Bridges, Haswell, etc.), you may want to try BLISlab.
 
  * BLISlab: A Sandbox for Optimizing GEMM
+
      (Available at: https://github.com/flame/blislab)
    
 
