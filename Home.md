@@ -1,6 +1,7 @@
 From http://wiki.cs.utexas.edu/rvdg/HowToOptimizeGemm
 
 Copyright by Prof. Robert van de Geijn (rvdg@cs.utexas.edu).
+Porting to Github Markdown Wiki by Jianyu Huang (jianyu@cs.utexas.edu).
 
 # The GotoBLAS/BLIS Approach to Optimizing Matrix-Matrix Multiplication - Step-by-Step
 
@@ -25,11 +26,17 @@ This work is based on two publications.  You will want to read these when you ar
 
      (Available without charge at the following site: http://www.cs.utexas.edu/users/flame/FLAMEPublications.html)
 
- * BLIS: A Modern Alternative to the BLAS.
+ * BLIS: A Framework for Rapidly Instantiating BLAS Functionality.
    Field G. Van Zee, Robert A. van de Geijn.
-   ACM Transactions on Mathematical Software, submitted.
+   ACM Transactions on Mathematical Software (TOMS), 2015.
 
      (Available without charge at the following site: http://www.cs.utexas.edu/users/flame/FLAMEPublications.html)
+
+For more advanced exercises with recent architectures (Intel Sandy/Ivy Bridges, Haswell, etc), you may want to try BLISlab.
+
+ * BLISlab: A Sandbox for Optimizing GEMM
+     (Available at: https://github.com/flame/blislab)
+   
 
 # Set Up
 
@@ -74,7 +81,6 @@ MY_MMult = [
 720 2.096185e-01 0.000000e+00 
 760 2.116985e-01 0.000000e+00 
 800 2.115609e-01 0.000000e+00 
-];
 ];
 ```
  The first column equals the problem size.  The second column the performance (in Gflops) when a matrix-matrix multiply with the indicated problem size `m=n=k` is executed.  The last column reports the maximum absolute difference encountered between the implementation in `REF_MMult.c` and `MMult0.c`.  It should be close to 0.00000e+00 although as different optimizations are added the difference may not be perfectly zero.
