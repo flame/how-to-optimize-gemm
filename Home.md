@@ -95,13 +95,13 @@ octave:1> PlotAll        % this will create the plot
 
 The performance graph (on my 1.7GHz Intel Core i5 MacBook Air) looks something like
 
-![](../raw/master/figures/compare_MMult0_vs_MMult0.png) 
+![](./raw/master/figures/compare_MMult0_vs_MMult0.png) 
 
 Notice that the two curves are right on top of each other because data for the same implementation are being compared.  From the fact that the top of the graph represents peak performance, it is obvious that this simple implementation achieves only a fraction of the ideal performance.
 
 A question, of course is, is this the best we can do?  We are going to walk through a sequence of optimizations, culminating in performance marked by "NEW" in the following graph:
 
-![](../raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
+![](./raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
 
 # Step-by-step optimizations
 
@@ -119,7 +119,7 @@ We will now lead the visitor through a series of optimizations.  In some cases, 
 
 This does not yield better performance:
 
-![](../raw/master/figures/compare_MMult0_MMult2.png) 
+![](./raw/master/figures/compare_MMult0_MMult2.png) 
 
 It does set us up for the next step.
 
@@ -137,7 +137,7 @@ It does set us up for the next step.
 
 At this point, we are starting to see some performance improvements:
 
-![](../raw/master/figures/compare_MMult0_MMult-1x4-5.png) 
+![](./raw/master/figures/compare_MMult0_MMult-1x4-5.png) 
 
 ## Further optimizing
 
@@ -159,7 +159,7 @@ At this point, we are starting to see some performance improvements:
 
 There is considerable improvement for problem sizes that fit (at least partially) in the L2 cache.  Still, there is a lot of room for improvement.
 
-![](../raw/master/figures/compare_MMult0_MMult-1x4-9.png) 
+![](./raw/master/figures/compare_MMult0_MMult-1x4-9.png) 
 
 # Computing a 4 x 4 block of C at a time
 
@@ -179,8 +179,8 @@ We now compute a 4 x 4 block of C at a time in order to use vector instructions 
 
 At this point, we are again starting to see some performance improvements:
 
-![](../raw/master/figures/compare_MMult0_MMult-4x4-5.png) 
-![](../raw/master/figures/compare_MMult-1x4-5_MMult-4x4-5.png) 
+![](./raw/master/figures/compare_MMult0_MMult-4x4-5.png) 
+![](./raw/master/figures/compare_MMult-1x4-5_MMult-4x4-5.png) 
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
@@ -210,8 +210,8 @@ We now start optimizing differently as we did for the 1x4 case.
 
 We notice a considerable performance boost:
 
-![](../raw/master/figures/compare_MMult0_MMult-4x4-10.png) 
-![](../raw/master/figures/compare_MMult-1x4-9_MMult-4x4-10.png) 
+![](./raw/master/figures/compare_MMult0_MMult-4x4-10.png) 
+![](./raw/master/figures/compare_MMult-1x4-9_MMult-4x4-10.png) 
 
 Still, there is a lot of room for improvement.
 
@@ -223,8 +223,8 @@ Still, there is a lot of room for improvement.
 
 Now, performance is maintained:
 
-![](../raw/master/figures/compare_MMult0_MMult-4x4-11.png) 
-![](../raw/master/figures/compare_MMult-4x4-10_MMult-4x4-11.png) 
+![](./raw/master/figures/compare_MMult0_MMult-4x4-11.png) 
+![](./raw/master/figures/compare_MMult-4x4-10_MMult-4x4-11.png) 
 
 ## Packing into contiguous memory
 
@@ -236,8 +236,8 @@ Now, performance is maintained:
   
     This yields a surprisingly large performance boost: 
 
-![](../raw/master/figures/compare_MMult0_MMult-4x4-13.png) 
-![](../raw/master/figures/compare_MMult-4x4-11_MMult-4x4-13.png)
+![](./raw/master/figures/compare_MMult0_MMult-4x4-13.png) 
+![](./raw/master/figures/compare_MMult-4x4-11_MMult-4x4-13.png)
 
  * Finally, we pack the block of B so that we march through it contiguously.
 
@@ -247,6 +247,6 @@ Now, performance is maintained:
   
 We now attain 90% of the turbo boost peak of the processor!
  
-![](../raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
-![](../raw/master/figures/compare_MMult-4x4-13_MMult-4x4-15.png)
+![](./raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
+![](./raw/master/figures/compare_MMult-4x4-13_MMult-4x4-15.png)
 
