@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult_1x4_6.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_6.c) into a file named [`MMult_1x4_7.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_7.c) and change the contents:
+Copy the contents of file [`MMult_1x4_6.c`](../blob/master/src/MMult_1x4_6.c) into a file named [`MMult_1x4_7.c`](../blob/master/src/MMult_1x4_7.c) and change the contents:
 
 from
 ```c
@@ -166,7 +166,7 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-6_MMult-1x4-7.png)
+![](../raw/master/figures/compare_MMult-1x4-6_MMult-1x4-7.png)
 
 We now use four pointers, `bp0_pntr`, `bp1_pntr`, `bp2_pntr`, and `bp3_pntr`, to access the elements `B( p, 0 )`, `B( p, 1 )`, `B( p, 2 )`, `B( p, 3 )`.  This reduces indexing overhead.
 

@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult_1x4_4.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_4.c) into a file named [`MMult_1x4_5.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_5.c) and change the contents:
+Copy the contents of file [`MMult_1x4_4.c`](../blob/master/src/MMult_1x4_4.c) into a file named [`MMult_1x4_5.c`](../blob/master/src/MMult_1x4_5.c) and change the contents:
 
 from
 ```c
@@ -140,7 +140,7 @@ octave:3> PlotAll        % this will create the plot
 This time the performance graph will look something like
 
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-4_MMult-1x4-5.png)
+![](../raw/master/figures/compare_MMult-1x4-4_MMult-1x4-5.png)
 
 Now we start seeing a performance benefit.  The reason is that the four loops have been fused and therefore the four inner products are now being performed simultaneously.    This has the following benefits:
  

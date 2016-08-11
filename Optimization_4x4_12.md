@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult_4x4_11.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_4x4_11.c) into a file named [`MMult_4x4_12.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_4x4_12.c) and change the contents:
+Copy the contents of file [`MMult_4x4_11.c`](../blob/master/src/MMult_4x4_11.c) into a file named [`MMult_4x4_12.c`](../blob/master/src/MMult_4x4_12.c) and change the contents:
 
 Change the first lines in the `makefile` to
 ```makefile
@@ -12,7 +12,7 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-11_MMult-4x4-12.png)
+![](../raw/master/figures/compare_MMult-4x4-11_MMult-4x4-12.png)
 
 
 We now pack to 4xk block of A before calling `AddDot4x4`.  We see a performance drop.  If one examines the inner kernel

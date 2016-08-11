@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult_4x4_9.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_4x4_9.c)  into a file named [`MMult_4x4_10.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_4x4_10.c) and change the contents:
+Copy the contents of file [`MMult_4x4_9.c`](../blob/master/src/MMult_4x4_9.c)  into a file named [`MMult_4x4_10.c`](../blob/master/src/MMult_4x4_10.c) and change the contents:
 
 
 Change the first lines in the `makefile` to
@@ -14,7 +14,7 @@ octave:3> PlotAll        % this will create the plot
 This time the performance graph will look something like
 
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-9_MMult-4x4-10.png)
+![](../raw/master/figures/compare_MMult-4x4-9_MMult-4x4-10.png)
 
 
 

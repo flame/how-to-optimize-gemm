@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult_1x4_3.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_3.c) into a file named [`MMult_1x4_4.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_4.c) and change the contents:
+Copy the contents of file [`MMult_1x4_3.c`](../blob/master/src/MMult_1x4_3.c) into a file named [`MMult_1x4_4.c`](../blob/master/src/MMult_1x4_4.c) and change the contents:
 
 from
 ```c
@@ -148,6 +148,6 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-3_MMult-1x4-4.png)
+![](../raw/master/figures/compare_MMult-1x4-3_MMult-1x4-4.png)
 
 Still, no performance benefit.

@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult_1x4_5.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_5.c) into a file named [`MMult_1x4_6.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult_1x4_6.c) and change the contents:
+Copy the contents of file [`MMult_1x4_5.c`](../blob/master/src/MMult_1x4_5.c) into a file named [`MMult_1x4_6.c`](../blob/master/src/MMult_1x4_6.c) and change the contents:
 
 from
 ```c
@@ -145,7 +145,7 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-5_MMult-1x4-6.png)
+![](../raw/master/figures/compare_MMult-1x4-5_MMult-1x4-6.png)
 
 Now we start seeing a performance benefit.  We accumulate the updates to the current 1x4 row of C in registers and we place the element A( p, 0 ) in a register, to reduce traffic between cache and registers.
  
