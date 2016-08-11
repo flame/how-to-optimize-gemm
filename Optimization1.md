@@ -89,6 +89,6 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-![](./raw/master/figures/compare_MMult0_MMult1.png)
+![](../raw/master/figures/compare_MMult0_MMult1.png)
 
 We see no performance benefit.  What we are doing is slowly changing the code into one where there will be a performance benefit.
