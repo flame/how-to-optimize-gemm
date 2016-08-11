@@ -2,7 +2,7 @@ From http://wiki.cs.utexas.edu/rvdg/HowToOptimizeGemm
 
 Copyright by Prof. Robert van de Geijn (rvdg@cs.utexas.edu).
 
-Porting to Github Markdown Wiki by Jianyu Huang (jianyu@cs.utexas.edu).
+Adapted to Github Markdown Wiki by Jianyu Huang (jianyu@cs.utexas.edu).
 
 # The GotoBLAS/BLIS Approach to Optimizing Matrix-Matrix Multiplication - Step-by-Step
 
@@ -48,7 +48,7 @@ To be able to follow along with the below examples, you will want to download so
 [Set Up](./SetUp)
 page.
 
-Make sure that the `makefile` starts with the following lines:
+Make sure that the [`makefile`](../blob/master/src/HowToOptimizeGemm) starts with the following lines:
 ```makefile
 OLD  := MMult0
 NEW  := MMult0
