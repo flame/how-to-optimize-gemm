@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult0.c`](../blob/master/src/MMult0.c) into a file named [`MMult1.c`](../blob/master/src/MMult1.c) and change the contents:
+Copy the contents of file [`MMult0.c`](../blob/master/src/HowToOptimizeGemm/MMult0.c) into a file named [`MMult1.c`](../blob/master/src/MMult1.c) and change the contents:
 
 from
 ```c
