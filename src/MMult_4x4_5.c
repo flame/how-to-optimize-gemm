@@ -1,4 +1,3 @@
-{{{
 
 /* Create macros so that the matrices are stored in column-major order */
 
@@ -78,4 +77,3 @@ void AddDot4x4( int k, double *a, int lda,  double *b, int ldb, double *c, int l
     C( 3, 3 ) += A( 3, p ) * B( p, 3 );     
   }
 }
-}}}

@@ -1,4 +1,3 @@
-{{{
 
 /* Create macros so that the matrices are stored in column-major order */
 
@@ -89,4 +88,3 @@ void AddDot( int k, double *x, int incx,  double *y, double *gamma )
     *gamma += X( p ) * y[ p ];     
   }
 }
-}}}

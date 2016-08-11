@@ -1,4 +1,3 @@
-{{{
 
 /* Create macros so that the matrices are stored in column-major order */
 
@@ -110,4 +109,3 @@ void AddDot4x4( int k, double *a, int lda,  double *b, int ldb, double *c, int l
   C( 2, 0 ) += c_20_reg;   C( 2, 1 ) += c_21_reg;   C( 2, 2 ) += c_22_reg;   C( 2, 3 ) += c_23_reg;
   C( 3, 0 ) += c_30_reg;   C( 3, 1 ) += c_31_reg;   C( 3, 2 ) += c_32_reg;   C( 3, 3 ) += c_33_reg;
 }
-}}}
