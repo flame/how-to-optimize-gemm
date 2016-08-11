@@ -1,4 +1,4 @@
-Copy the contents of file [`MMult0.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult0.c) into a file named [`MMult1.c`](https://github.com/SudoNohup/HowToOptimizeGemm/blob/master/src/MMult1.c) and change the contents:
+Copy the contents of file [`MMult0.c`](../blob/master/src/MMult0.c) into a file named [`MMult1.c`](../blob/master/src/MMult1.c) and change the contents:
 
 from
 ```c
@@ -89,6 +89,6 @@ octave:3> PlotAll        % this will create the plot
 
 This time the performance graph will look something like
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult1.png)
+![](./raw/master/figures/compare_MMult0_MMult1.png)
 
 We see no performance benefit.  What we are doing is slowly changing the code into one where there will be a performance benefit.
