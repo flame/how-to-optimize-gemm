@@ -48,28 +48,28 @@ To be able to follow along with the below examples, you will want to download so
 [Set Up](./SetUp)
 page.
 
-Make sure that the [`makefile`](../blob/master/src/HowToOptimizeGemm) starts with the following lines:
+Make sure that the [`makefile`](../blob/master/src/HowToOptimizeGemm/makefile) starts with the following lines:
 ```makefile
 OLD  := MMult0
 NEW  := MMult0
 ```
 This indicates that the performance of
 the version of matrix-matrix multiplication in 
-`MMult0.c` is measured (by virtue of the statement `OLD  :=0`).  
+[`MMult0.c`](../blob/master/src/HowToOptimizeGemm/MMult0.c) is measured (by virtue of the statement `OLD  :=0`).  
 
 Next, to make sure that when plotting the graphs are properly scaled, 
-set certain parameters in the file `proc_parameters.m`.  See the 
+set certain parameters in the file [`proc_parameters.m`](../blob/master/src/HowToOptimizeGemm/proc_parameters.m).  See the 
 comments in that file.  (Setting these parameters will ensure
 that when plotting the y-axis ranges from 0 to the peak performance
 of the architecture.)
 
-Picking the right clock speed is a bit tricky, given that modern architectures have something called 'turbo boost' which changes the clock speed.  For example, the Intel i5 core in my laptop has a clock speed of 1.7 GHz, but a turbo boost rate of 2.6 GHz.  I chose to indicate in `proc_parameters.m` that the processor has a clock speed of 2.6 GHz, since otherwise some of the results would show that the implementation attains greater than the peak speed of the processor...
+Picking the right clock speed is a bit tricky, given that modern architectures have something called 'turbo boost' which changes the clock speed.  For example, the Intel i5 core in my laptop has a clock speed of 1.7 GHz, but a turbo boost rate of 2.6 GHz.  I chose to indicate in [`proc_parameters.m`](../blob/master/src/HowToOptimizeGemm/proc_parameters.m) that the processor has a clock speed of 2.6 GHz, since otherwise some of the results would show that the implementation attains greater than the peak speed of the processor...
 
 Execute
  * `make run`
- This will compile, link, and execute the test driver, linking to the implementation in MMult0.c.  The performance data is saved in file `output0.m`.
+ This will compile, link, and execute the test driver, linking to the implementation in [`MMult0.c`](../blob/master/src/HowToOptimizeGemm/MMult0.c).  The performance data is saved in file `output0.m`.
  * `more output0.m`
- This will display the contents of the output file `output_MMult0.m`.  It should look something like
+ This will display the contents of the output file [`output_MMult0.m`](../blob/master/src/HowToOptimizeGemm/output_MMult0.m).  It should look something like
 ```matlab
 version = 'MMult0';
 MY_MMult = [
@@ -85,7 +85,7 @@ MY_MMult = [
 800 2.115609e-01 0.000000e+00 
 ];
 ```
- The first column equals the problem size.  The second column the performance (in Gflops) when a matrix-matrix multiply with the indicated problem size `m=n=k` is executed.  The last column reports the maximum absolute difference encountered between the implementation in `REF_MMult.c` and `MMult0.c`.  It should be close to 0.00000e+00 although as different optimizations are added the difference may not be perfectly zero.
+ The first column equals the problem size.  The second column the performance (in Gflops) when a matrix-matrix multiply with the indicated problem size `m=n=k` is executed.  The last column reports the maximum absolute difference encountered between the implementation in [`REF_MMult.c`](../blob/master/src/HowToOptimizeGemm/REF_MMult.c) and [`MMult0.c`](../blob/master/src/HowToOptimizeGemm/MMult0.c).  It should be close to 0.00000e+00 although as different optimizations are added the difference may not be perfectly zero.
  * `octave`
  This will start up octave.  Then, in octave, 
 ```matlab
@@ -95,13 +95,13 @@ octave:1> PlotAll        % this will create the plot
 
 The performance graph (on my 1.7GHz Intel Core i5 MacBook Air) looks something like
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_vs_MMult0.png) 
+![](../raw/master/figures/compare_MMult0_vs_MMult0.png) 
 
 Notice that the two curves are right on top of each other because data for the same implementation are being compared.  From the fact that the top of the graph represents peak performance, it is obvious that this simple implementation achieves only a fraction of the ideal performance.
 
 A question, of course is, is this the best we can do?  We are going to walk through a sequence of optimizations, culminating in performance marked by "NEW" in the following graph:
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
+![](../raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
 
 # Step-by-step optimizations
 
@@ -119,7 +119,7 @@ We will now lead the visitor through a series of optimizations.  In some cases, 
 
 This does not yield better performance:
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult2.png) 
+![](../raw/master/figures/compare_MMult0_MMult2.png) 
 
 It does set us up for the next step.
 
@@ -137,7 +137,7 @@ It does set us up for the next step.
 
 At this point, we are starting to see some performance improvements:
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-1x4-5.png) 
+![](../raw/master/figures/compare_MMult0_MMult-1x4-5.png) 
 
 ## Further optimizing
 
@@ -159,7 +159,7 @@ At this point, we are starting to see some performance improvements:
 
 There is considerable improvement for problem sizes that fit (at least partially) in the L2 cache.  Still, there is a lot of room for improvement.
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-1x4-9.png) 
+![](../raw/master/figures/compare_MMult0_MMult-1x4-9.png) 
 
 # Computing a 4 x 4 block of C at a time
 
@@ -179,8 +179,8 @@ We now compute a 4 x 4 block of C at a time in order to use vector instructions 
 
 At this point, we are again starting to see some performance improvements:
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-5.png) 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-5_MMult-4x4-5.png) 
+![](../raw/master/figures/compare_MMult0_MMult-4x4-5.png) 
+![](../raw/master/figures/compare_MMult-1x4-5_MMult-4x4-5.png) 
 
  * We accumulate the elements of C in registers and use a register for elements of A
 
@@ -210,8 +210,8 @@ We now start optimizing differently as we did for the 1x4 case.
 
 We notice a considerable performance boost:
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-10.png) 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-1x4-9_MMult-4x4-10.png) 
+![](../raw/master/figures/compare_MMult0_MMult-4x4-10.png) 
+![](../raw/master/figures/compare_MMult-1x4-9_MMult-4x4-10.png) 
 
 Still, there is a lot of room for improvement.
 
@@ -223,8 +223,8 @@ Still, there is a lot of room for improvement.
 
 Now, performance is maintained:
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-11.png) 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-10_MMult-4x4-11.png) 
+![](../raw/master/figures/compare_MMult0_MMult-4x4-11.png) 
+![](../raw/master/figures/compare_MMult-4x4-10_MMult-4x4-11.png) 
 
 ## Packing into contiguous memory
 
@@ -236,8 +236,8 @@ Now, performance is maintained:
   
     This yields a surprisingly large performance boost: 
 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-13.png) 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-11_MMult-4x4-13.png)
+![](../raw/master/figures/compare_MMult0_MMult-4x4-13.png) 
+![](../raw/master/figures/compare_MMult-4x4-11_MMult-4x4-13.png)
 
  * Finally, we pack the block of B so that we march through it contiguously.
 
@@ -247,6 +247,6 @@ Now, performance is maintained:
   
 We now attain 90% of the turbo boost peak of the processor!
  
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
-![](https://github.com/SudoNohup/HowToOptimizeGemm/raw/master/figures/compare_MMult-4x4-13_MMult-4x4-15.png)
+![](../raw/master/figures/compare_MMult0_MMult-4x4-15.png) 
+![](../raw/master/figures/compare_MMult-4x4-13_MMult-4x4-15.png)
 
