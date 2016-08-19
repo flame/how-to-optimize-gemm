@@ -23,7 +23,7 @@ Adapted to Github Markdown Wiki by Jianyu Huang (jianyu@cs.utexas.edu).
     * [Packing into contiguous memory](../../wiki#packing-into-contiguous-memory)
   * [Acknowledgement](../../wiki#acknowledgement)
 
-# Similar Links
+# Related Links
 * [BLISlab: A Sandbox for Optimizing GEMM] (https://github.com/flame/blislab)
 * [GEMM: From Pure C to SSE Optimized Micro Kernals] (http://apfel.mathematik.uni-ulm.de/~lehn/sghpc/gemm/)
 
