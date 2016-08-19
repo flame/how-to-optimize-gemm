@@ -26,3 +26,8 @@ Adapted to Github Markdown Wiki by Jianyu Huang (jianyu@cs.utexas.edu).
 # Similar Links
 * [BLISlab: A Sandbox for Optimizing GEMM] (https://github.com/flame/blislab)
 * [GEMM: From Pure C to SSE Optimized Micro Kernals] (http://apfel.mathematik.uni-ulm.de/~lehn/sghpc/gemm/)
+
+# Acknowledgement
+This material was partially sponsored by grants from the National Science Foundation (Awards ACI-1148125/1340293).
+
+_Any opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation (NSF)._
