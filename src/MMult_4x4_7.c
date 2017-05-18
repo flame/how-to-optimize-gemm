@@ -70,11 +70,6 @@ void AddDot4x4( int k, double *a, int lda,  double *b, int ldb, double *c, int l
   double 
     /* Point to the current elements in the four columns of B */
     *b_p0_pntr, *b_p1_pntr, *b_p2_pntr, *b_p3_pntr; 
-    
-  b_p0_pntr = &B( 0, 0 );
-  b_p1_pntr = &B( 0, 1 );
-  b_p2_pntr = &B( 0, 2 );
-  b_p3_pntr = &B( 0, 3 );
 
   c_00_reg = 0.0;   c_01_reg = 0.0;   c_02_reg = 0.0;   c_03_reg = 0.0;
   c_10_reg = 0.0;   c_11_reg = 0.0;   c_12_reg = 0.0;   c_13_reg = 0.0;
@@ -86,6 +81,11 @@ void AddDot4x4( int k, double *a, int lda,  double *b, int ldb, double *c, int l
     a_1p_reg = A( 1, p );
     a_2p_reg = A( 2, p );
     a_3p_reg = A( 3, p );
+	  
+    b_p0_pntr = &B( p, 0 );
+    b_p1_pntr = &B( p, 1 );
+    b_p2_pntr = &B( p, 2 );
+    b_p3_pntr = &B( p, 3 );	  
 
     /* First row */
     c_00_reg += a_0p_reg * *b_p0_pntr;     
