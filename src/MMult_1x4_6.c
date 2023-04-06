@@ -6,7 +6,7 @@
 
 /* Routine for computing C = A * B + C */
 
-void AddDot1x4( int, double *, int,  double *, int, double *, int )
+void AddDot1x4( int, double *, int,  double *, int, double *, int );
 
 void MY_MMult( int m, int n, int k, double *a, int lda, 
                                     double *b, int ldb,
