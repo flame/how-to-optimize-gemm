@@ -35,6 +35,6 @@ leading dimension of the array that stores matrix X.  If LDX=-1
 then the leading dimension is set to the row dimension of matrix X.
 */
 
-#define LDA 1000
-#define LDB 1000
-#define LDC 1000
+#define LDA -1
+#define LDB -1
+#define LDC -1
