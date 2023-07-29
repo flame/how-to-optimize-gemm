@@ -22,15 +22,17 @@ void MY_MMult( int m, int n, int k, double *a, int lda,
                                     double *b, int ldb,
                                     double *c, int ldc )
 {
-  int i, p, pb, ib;
+  int i, p, pb, ib, j, jb;
 
-  /* This time, we compute a mc x n block of C by a call to the InnerKernel */
-
-  for ( p=0; p<k; p+=kc ){
-    pb = min( k-p, kc );
-    for ( i=0; i<m; i+=mc ){
-      ib = min( m-i, mc );
-      InnerKernel( ib, n, pb, &A( i,p ), lda, &B(p, 0 ), ldb, &C( i,0 ), ldc, i==0 );
+  /* This time, we compute a mc x nb block of C by a call to the InnerKernel */
+  for ( j=0; j<n; j+=nb ){
+    jb = min( n-j, nb );
+    for ( p=0; p<k; p+=kc ){
+      pb = min( k-p, kc );
+      for ( i=0; i<m; i+=mc ){
+        ib = min( m-i, mc );
+        InnerKernel( ib, jb, pb, &A( i,p ), lda, &B(p,j ), ldb, &C( i,j ), ldc, i==0 );
+      }
     }
   }
 }
